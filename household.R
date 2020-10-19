@@ -12,14 +12,13 @@ house[, Date := lapply(.SD, as.Date, "%d/%m/%Y"), .SDcols = c("Date")]
 # Filter Dates for 2007-02-01 and 2007-02-02
 house <- house[(Date >= "2007-02-01") & (Date <= "2007-02-02")]
 
-
+png("plot1.png", width=600, height=600)
 
 ## Plot 1
 hist(house[, Global_active_power], main="Global Active Power", 
      xlab="Global Active Power (kilowatts)", ylab="Frequency", col="Red")
-plot(house$Global_active_power)
 
-png("plot1.png", width=600, height=600)
+
 
 
 
@@ -41,14 +40,13 @@ house[, dateTime := as.POSIXct(paste(Date, Time), format = "%d/%m/%Y %H:%M:%S")]
 # Filter Dates for 2007-02-01 and 2007-02-02
 house <- house[(dateTime >= "2007-02-01") & (dateTime < "2007-02-03")]
 
-
+png("plot2.png", width=600, height=600)
 
 ## Plot 2
 plot(x = house[, dateTime]
      , y = house[, Global_active_power]
      , type="l", xlab="", ylab="Global Active Power (kilowatts)")
 
-png("plot2.png", width=600, height=600)
 dev.off()
 
 
@@ -69,7 +67,7 @@ house[, dateTime := as.POSIXct(paste(Date, Time), format = "%d/%m/%Y %H:%M:%S")]
 # Filter Dates for 2007-02-01 and 2007-02-02
 house <- house[(dateTime >= "2007-02-01") & (dateTime < "2007-02-03")]
 
-
+png("plot3.png", width=600, height=600)
 
 # Plot 3
 plot(house[, dateTime], house[, Sub_metering_1], type="l", xlab="", ylab="Energy sub metering")
@@ -79,7 +77,7 @@ legend("topright"
        , col=c("black","red","blue")
        , c("Sub_metering_1  ","Sub_metering_2  ", "Sub_metering_3  ")
        ,lty=c(1,1), lwd=c(1,1))
-png("plot3.png", width=600, height=600)
+
 dev.off()
 
 
@@ -101,7 +99,7 @@ house[, dateTime := as.POSIXct(paste(Date, Time), format = "%d/%m/%Y %H:%M:%S")]
 # Filter Dates for 2007-02-01 and 2007-02-02
 house <- house[(dateTime >= "2007-02-01") & (dateTime < "2007-02-03")]
 
-
+png("plot4.png", width=600, height=600)
 
 par(mfrow=c(2,2))
 
@@ -123,5 +121,5 @@ legend("topright", col=c("black","red","blue")
 
 # Plot 4
 plot(house[, dateTime], house[,Global_reactive_power], type="l", xlab="datetime", ylab="Global_reactive_power")
-png("plot4.png", width=600, height=600)
+
 dev.off()
